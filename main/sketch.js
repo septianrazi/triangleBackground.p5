@@ -33,15 +33,127 @@ function draw() {
   text('x: ' + mouseX + ' y: ' + mouseY, 100, 50);
 
   fill(loadingColour)
-  load1();
+  translate(windowWidth/2, windowHeight/2);
+  load10();
 
 
 }
 
-//SIMPLE TRIANGLE (NOT FINISHED - need to maKE EQUILATERAL)
-function load1() {
+
+//circle stop light 
+function load10() {
   noStroke()
-  translate(windowWidth/2, windowHeight/2);
+  let l = [255,175,100]
+  var o1
+  var o2
+  var o3
+  let fc = frameCount/30
+  console.log(fc%3)
+
+  if ((fc % 3) < 1){
+    o1 = l[0]
+    o2 = l[1]
+    o3 = l[2]
+  } else if ((fc % 3) < 2){
+    o1 = l[2]
+    o2 = l[0]
+    o3 = l[1]
+  } else if ((fc % 3) < 3){
+    o1 = l[1]
+    o2 = l[2]
+    o3 = l[0]
+  }
+
+  cSize = loadingSize/2
+  fill(loadingColour,o1)
+  circle(-loadingSize,0,cSize)
+  fill(loadingColour,o2)
+  circle(0,0,cSize)
+  fill(loadingColour,o3)
+  circle(loadingSize,0,cSize)
+
+  rotate(0);
+}
+//SQUARE PASS THROUGH 
+function load9() {
+  let change = loadingSize * sin(frameCount/20)
+  //line(-loadingSize+change,0,loadingSize-change,0)
+
+  fill(loadingColour,215)
+  rect(-change, 0, 50-change/10,50-change/10)
+  rect(change, 0, 50-change/10,50-change/10)
+
+  rotate(0);
+}
+
+//SQUARE PASS THROUGH 
+function load8() {
+  let change = loadingSize * sin(frameCount/20)
+  //line(-loadingSize+change,0,loadingSize-change,0)
+
+  fill(loadingColour,215)
+  rect(-change, 0, 50-change/10,50-change/10)
+  rect(change, 0, 50-change/10,50-change/10)
+
+  rotate(0);
+}
+
+//SIN STRAIGHT LINE
+function load7() {
+  strokeWeight(5)
+  let change = loadingSize * sin(frameCount/20)
+  line(-loadingSize+change,0,loadingSize-change,0)
+  
+  rotate(0);
+}
+
+//SIN STRAIGHT LINE
+function load6() {
+  strokeWeight(5)
+  let change = loadingSize * sin(frameCount/20)
+  line(-loadingSize+change,0,loadingSize-change,0)
+  
+  rotate(0);
+}
+
+//SIN STRAIGHT LINE BOUNCE
+function load5() {
+  strokeWeight(5)
+  let change = loadingSize * sin(frameCount/20)
+  line(-loadingSize/2+change,0,loadingSize/2-change,0)
+  
+  rotate(0);
+}
+
+//DOUBLE LINE
+function load4() {
+  strokeWeight(5)
+  rotate(frameCount/20);
+ 
+  line(-loadingSize,-loadingSize,loadingSize,loadingSize)
+  
+  strokeWeight(5)
+  rotate(frameCount/30);
+ 
+  line(-loadingSize,-loadingSize,loadingSize,loadingSize)
+
+  translate(0,0);
+  rotate(0);
+}
+
+//SIMPLE LINE
+function load3() {
+  strokeWeight(5)
+  rotate(frameCount/12);
+ 
+  line(-loadingSize,-loadingSize,loadingSize,loadingSize)
+  translate(0,0);
+  rotate(0);
+}
+
+//SIMPLE TRIANGLE (NOT FINISHED - need to maKE EQUILATERAL)
+function load2() {
+  noStroke();
   rotate(frameCount/12);
   let x1 = 0
   let y1 = 0 - loadingSize/2
@@ -58,9 +170,8 @@ function load1() {
 }
 
 // SIMPLE SQUARE
-function load2() {
+function load1() {
   noStroke()
-  translate(windowWidth/2, windowHeight/2);
   rotate(frameCount/12);
   rect(0,0, 70,70);
   translate(0,0);
