@@ -5,6 +5,7 @@ var buttonW = 50
 var buttonH = 25
 var debug = "Misc"
 var blackBG = true
+var loadingSize = 150 // Size of Loading animation Icon
 
 
 function setup() {
@@ -29,21 +30,41 @@ function draw() {
   text(debug, windowWidth - 3*buttonW - 2*bordebuttonW, windowHeight - buttonH - bordebuttonW);
   
   fill(150);
-  text(mouseX, windowWidth/2, windowHeight/2);
-  text(mouseY, 100 + windowWidth/2, 100 + windowHeight/2);
+  text('x: ' + mouseX + ' y: ' + mouseY, 100, 50);
 
-  load1(windowWidth/2, windowHeight/2);
+  fill(loadingColour)
+  load1();
+
 
 }
 
-function load1(x, y) {
-  fill(loadingColour)
+//SIMPLE TRIANGLE (NOT FINISHED - need to maKE EQUILATERAL)
+function load1() {
   noStroke()
-  translate(width / 2, height / 2);
-  rotate(frameCount/10);
-  rect(0,0, 50,50);
+  translate(windowWidth/2, windowHeight/2);
+  rotate(frameCount/12);
+  let x1 = 0
+  let y1 = 0 - loadingSize/2
+
+  let x2 = 0 - loadingSize/2
+  let y2 = loadingSize/2
+
+  let x3 = loadingSize/2
+  let y3 = loadingSize/2
+
+  triangle(x1,y1,x2,y2,x3,y3);
   translate(0,0);
-  //rotate(0);
+  rotate(0);
+}
+
+// SIMPLE SQUARE
+function load2() {
+  noStroke()
+  translate(windowWidth/2, windowHeight/2);
+  rotate(frameCount/12);
+  rect(0,0, 70,70);
+  translate(0,0);
+  rotate(0);
 }
 
 function mousePressed() {
@@ -53,6 +74,9 @@ function mousePressed() {
     if (mouseY > (windowHeight - 2*buttonH - bordebuttonW) && mouseY < (windowHeight - bordebuttonW)) {
       changeBackground()
     }
+  }
+  if (dist(mouseX, mouseY, windowWidth/2, windowHeight/2) < loadingSize){
+    changeBackground()
   }
 }
 
