@@ -6,6 +6,19 @@ var buttonH = 25
 var debug = "Misc"
 var blackBG = true
 var loadingSize = 150 // Size of Loading animation Icon
+var bgOpacity = 255
+var loadArray = [
+  load1,
+  load2,
+  load3,
+  load4,
+  load5,
+  load6,
+  load7,
+  load8,
+  load9,
+  load10,
+]
 
 
 function setup() {
@@ -13,7 +26,7 @@ function setup() {
 }
 
 function draw() {
-  background(bgColour);
+  background(bgColour,bgOpacity);
   rectMode(RADIUS);
   textAlign(CENTER, CENTER);
   textSize(16);
@@ -34,21 +47,88 @@ function draw() {
 
   fill(loadingColour)
   translate(windowWidth/2, windowHeight/2);
-  load10();
+  //loadArray[9]();
+  load14()
+}
 
+function mousePressed() {
+  // Check if mouse is inside the circle
+  //rect(windowWidth - buttonW - bordebuttonW, windowHeight - buttonH - bordebuttonW
+  if (mouseX > (windowWidth - 2*buttonW - bordebuttonW) && mouseX < (windowWidth - bordebuttonW)) {
+    if (mouseY > (windowHeight - 2*buttonH - bordebuttonW) && mouseY < (windowHeight - bordebuttonW)) {
+      changeBackground()
+    }
+  }
+  if (dist(mouseX, mouseY, windowWidth/2, windowHeight/2) < loadingSize){
+    changeBackground()
+  }
+}
+
+function mouseMoved() {
 
 }
 
+// function to change the background of colour
+function changeBackground() {
+  console.log("before" + blackBG)
+  if (blackBG) {
+    bgColour = 0;
+    loadingColour = 255;
+    blackBG = false
+    console.log("p1")
+  } else if (!blackBG){
+    console.log("p2")
+    bgColour = 255;
+    loadingColour = 0;
+    blackBG = true
+  }
+}
 
-//circle stop light 
+
+////////////////////////////////////////////////
+// CODE FOR LOADING ANIMATIONS
+////////////////////////////////////////////////
+
+
+
+//CONSISTENT PENDULUM SLOW
+function load13() {
+  noStroke()
+  fill(loadingColour,150)
+  for (i = 0; i < 7; i++) {
+    let c = loadingSize * cos((frameCount+ i*5)/(20))
+    circle(c, 0, 50+i*2)
+  } 
+}
+
+//PENDULUM
+function load12() {
+  noStroke()
+  fill(loadingColour,150)
+  for (i = 0; i < 7; i++) {
+    let c = loadingSize * sin(frameCount/(20+i))
+    circle(c, 0, 50-i*2)
+  } 
+}
+
+//CONSISTENT PENDULUM
+function load11() {
+  noStroke()
+  fill(loadingColour,150)
+  for (i = 0; i < 7; i++) {
+    let c = loadingSize * cos((frameCount+ i*8)/(20))
+    circle(c, 0, 50+i*2)
+  }
+}
+
+//CIRCLE STOP LIGHT
 function load10() {
   noStroke()
-  let l = [255,175,100]
+  let l = [255,130,130]
   var o1
   var o2
   var o3
   let fc = frameCount/30
-  console.log(fc%3)
 
   if ((fc % 3) < 1){
     o1 = l[0]
@@ -74,12 +154,30 @@ function load10() {
 
   rotate(0);
 }
-//SQUARE PASS THROUGH 
+
+//CIRCLE SPIRAL LOADING
+function load14() {
+  noStroke();
+  let change = loadingSize * sin(frameCount/20)
+  bgOpacity = 50;
+  //line(-loadingSize+change,0,loadingSize-change,0)
+
+  fill(loadingColour)
+  rotate(frameCount/15)
+  circle(-change, 0, loadingSize*0.65-change/7)
+  circle(change, 0, loadingSize*0.65-change/7)
+
+
+  rotate(0);
+}
+
+//SQUARE SPIRAL LOADING
 function load9() {
   let change = loadingSize * sin(frameCount/20)
   //line(-loadingSize+change,0,loadingSize-change,0)
 
-  fill(loadingColour,215)
+  fill(loadingColour)
+  rotate(frameCount/15)
   rect(-change, 0, 50-change/10,50-change/10)
   rect(change, 0, 50-change/10,50-change/10)
 
@@ -176,39 +274,6 @@ function load1() {
   rect(0,0, 70,70);
   translate(0,0);
   rotate(0);
-}
-
-function mousePressed() {
-  // Check if mouse is inside the circle
-  //rect(windowWidth - buttonW - bordebuttonW, windowHeight - buttonH - bordebuttonW
-  if (mouseX > (windowWidth - 2*buttonW - bordebuttonW) && mouseX < (windowWidth - bordebuttonW)) {
-    if (mouseY > (windowHeight - 2*buttonH - bordebuttonW) && mouseY < (windowHeight - bordebuttonW)) {
-      changeBackground()
-    }
-  }
-  if (dist(mouseX, mouseY, windowWidth/2, windowHeight/2) < loadingSize){
-    changeBackground()
-  }
-}
-
-function mouseMoved() {
-
-}
-
-// function to change the background of colour
-function changeBackground() {
-  console.log("before" + blackBG)
-  if (blackBG) {
-    bgColour = 0;
-    loadingColour = 255;
-    blackBG = false
-    console.log("p1")
-  } else if (!blackBG){
-    console.log("p2")
-    bgColour = 255;
-    loadingColour = 0;
-    blackBG = true
-  }
 }
 
 
