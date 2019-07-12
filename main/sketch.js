@@ -7,22 +7,19 @@ var debug = "Misc"
 var blackBG = true
 var loadingSize = 150 // Size of Loading animation Icon
 var bgOpacity = 255
-var loadArray = [
-  load1,
-  load2,
-  load3,
-  load4,
-  load5,
-  load6,
-  load7,
-  load8,
-  load9,
-  load10,
-]
+var loadArray = [] // Array to store different load icon animations
+
+var sliderPosY;
+var sliderPosX = 120
+var sliderPosMin = 50
+var sliderPosMax = 190
+var sliderButtonSize = 20
+var sliderFill = 150
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  sliderPosY = windowHeight - bordebuttonW - buttonH
 }
 
 function draw() {
@@ -44,11 +41,31 @@ function draw() {
   
   fill(150);
   text('x: ' + mouseX + ' y: ' + mouseY, 100, 50);
+  
+  fill(225)
+
+  drawSlider(sliderPosX, sliderButtonSize, sliderPosMin, sliderPosMax,sliderFill)
+
 
   fill(loadingColour)
   translate(windowWidth/2, windowHeight/2);
-  //loadArray[9]();
-  load14()
+  //loadArray[0]();
+  //console.log(loadArray)
+
+  load19()
+
+  //strokeWeight(1)
+}
+
+
+function drawSlider(x, s, min, max, f){
+  stroke(loadingColour)
+  color(loadingColour)
+  line(min, sliderPosY, max, sliderPosY)
+  noStroke()
+  fill(f)
+  circle(x, sliderPosY, s)
+  stroke(1)
 }
 
 function mousePressed() {
@@ -62,6 +79,14 @@ function mousePressed() {
   if (dist(mouseX, mouseY, windowWidth/2, windowHeight/2) < loadingSize){
     changeBackground()
   }
+
+  if (dist(mouseX, mouseY, sliderPosX, sliderPosY) < sliderButtonSize) {
+    sliderFill = 180
+  }
+}
+
+function mouseReleased() {
+  sliderFill = 150
 }
 
 function mouseMoved() {
@@ -82,6 +107,7 @@ function changeBackground() {
     loadingColour = 0;
     blackBG = true
   }
+  
 }
 
 
@@ -89,7 +115,85 @@ function changeBackground() {
 // CODE FOR LOADING ANIMATIONS
 ////////////////////////////////////////////////
 
+// TRIPPY WINDMEEL
+function load19() {
+  let change = loadingSize * ((tan(((frameCount/30)))))
+  //line(-loadingSize+change,0,loadingSize-change,0)
+  stroke(loadingColour)
+  strokeWeight(5)
 
+  fill(loadingColour)
+  rotate(frameCount/8)
+  line(-change, 0, change, 0)
+
+  let change2 = loadingSize * ((tan(((frameCount/15)))))
+  line(0, -change2, 0, change2)
+  //line(-change2, 0, change2, 0)
+  //circle(change, 0, 50)
+
+  bgOpacity = 50
+  rotate(0);
+}
+
+// WINDMEEL
+function load18() {
+  let change = loadingSize * (tan(cos(((frameCount/30)))))
+  //line(-loadingSize+change,0,loadingSize-change,0)
+  stroke(1)
+  strokeWeight(5)
+
+  fill(loadingColour)
+  rotate(frameCount/4)
+  line(-change, 0, change, 0)
+  
+  //circle(change, 0, 50)
+
+  bgOpacity = 50
+  rotate(0);
+}
+
+//CIRCLE SPIRAL LOADING CIRCLE
+function load17() {
+  let change = loadingSize * (cos(((frameCount/30))))
+  //line(-loadingSize+change,0,loadingSize-change,0)
+  noStroke()
+
+  fill(loadingColour)
+  rotate(frameCount/4)
+  circle(-change, 0, 50)
+  circle(change, 0, 50)
+
+  bgOpacity = 50
+  rotate(0);
+}
+
+//CIRCLE SPIRAL LOADING TAN
+function load16() {
+  let change = loadingSize * (1/tan(((frameCount/30))))
+  //line(-loadingSize+change,0,loadingSize-change,0)
+  noStroke()
+
+  fill(loadingColour)
+  rotate(frameCount/3)
+  circle(-change, 0, 50,)
+  circle(change, 0, 50)
+
+  bgOpacity = 37
+  rotate(0);
+}
+
+//SQUARE HORIZONTAL SPIN
+function load15() {
+  let change = loadingSize * sin(frameCount/20)
+
+  fill(loadingColour)
+  translate(-change, 0)
+  rotate(frameCount/15)
+  rect(0, 0, 50, 50)
+  bgOpacity = 80
+  translate(0, 0)
+  rotate(0);
+}
 
 //CONSISTENT PENDULUM SLOW
 function load13() {
