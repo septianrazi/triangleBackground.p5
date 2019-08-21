@@ -53,6 +53,25 @@ function draw() {
   //console.log(loadArray)
 
   load19()
+  // load18()
+  // load17()
+  // load16()
+  // load15()
+  // load14()
+  // load13()
+  // load12()
+  // load11()
+  // load10()
+  // load9()
+  // load8()
+  // load7()
+  // load6()
+  // load5()
+  // load4()
+  // load3()
+  // load2()
+  // load1()
+
 
   //strokeWeight(1)
 }
@@ -117,6 +136,7 @@ function changeBackground() {
 
 // TRIPPY WINDMEEL
 function load19() {
+  push()
   let change = loadingSize * ((tan(((frameCount/30)))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   stroke(loadingColour)
@@ -132,11 +152,13 @@ function load19() {
   //circle(change, 0, 50)
 
   bgOpacity = 50
-  rotate(0);
+  pop()
 }
 
 // WINDMEEL
 function load18() {
+  push()
+
   let change = loadingSize * (tan(cos(((frameCount/30)))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   stroke(1)
@@ -149,11 +171,14 @@ function load18() {
   //circle(change, 0, 50)
 
   bgOpacity = 50
-  rotate(0);
+  
+  pop()
 }
 
 //CIRCLE SPIRAL LOADING CIRCLE
 function load17() {
+  push()
+
   let change = loadingSize * (cos(((frameCount/30))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   noStroke()
@@ -164,11 +189,14 @@ function load17() {
   circle(change, 0, 50)
 
   bgOpacity = 50
-  rotate(0);
+  
+  pop()
 }
 
 //CIRCLE SPIRAL LOADING TAN
 function load16() {
+  push()
+
   let change = loadingSize * (1/tan(((frameCount/30))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   noStroke()
@@ -179,11 +207,14 @@ function load16() {
   circle(change, 0, 50)
 
   bgOpacity = 37
-  rotate(0);
+  
+  pop()
 }
 
 //SQUARE HORIZONTAL SPIN
 function load15() {
+  push()
+
   let change = loadingSize * sin(frameCount/20)
 
   fill(loadingColour)
@@ -192,41 +223,56 @@ function load15() {
   rect(0, 0, 50, 50)
   bgOpacity = 80
   translate(0, 0)
-  rotate(0);
+  
+  pop()
 }
 
 //CONSISTENT PENDULUM SLOW
 function load13() {
+  push()
+
   noStroke()
   fill(loadingColour,150)
   for (i = 0; i < 7; i++) {
     let c = loadingSize * cos((frameCount+ i*5)/(20))
     circle(c, 0, 50+i*2)
   } 
+  
+  pop()
 }
 
 //PENDULUM
 function load12() {
+  push()
+
   noStroke()
   fill(loadingColour,150)
   for (i = 0; i < 7; i++) {
     let c = loadingSize * sin(frameCount/(20+i))
     circle(c, 0, 50-i*2)
   } 
+  
+  pop()
 }
 
 //CONSISTENT PENDULUM
 function load11() {
+  push()
+
   noStroke()
   fill(loadingColour,150)
   for (i = 0; i < 7; i++) {
     let c = loadingSize * cos((frameCount+ i*8)/(20))
     circle(c, 0, 50+i*2)
   }
+  
+  pop()
 }
 
 //CIRCLE STOP LIGHT
 function load10() {
+  push()
+
   noStroke()
   let l = [255,130,130]
   var o1
@@ -256,11 +302,13 @@ function load10() {
   fill(loadingColour,o3)
   circle(loadingSize,0,cSize)
 
-  rotate(0);
+  pop()
 }
 
 //CIRCLE SPIRAL LOADING
 function load14() {
+  push()
+
   noStroke();
   let change = loadingSize * sin(frameCount/20)
   bgOpacity = 50;
@@ -271,12 +319,13 @@ function load14() {
   circle(-change, 0, loadingSize*0.65-change/7)
   circle(change, 0, loadingSize*0.65-change/7)
 
-
-  rotate(0);
+  pop()
 }
 
 //SQUARE SPIRAL LOADING
 function load9() {
+  push()
+
   let change = loadingSize * sin(frameCount/20)
   //line(-loadingSize+change,0,loadingSize-change,0)
 
@@ -285,11 +334,13 @@ function load9() {
   rect(-change, 0, 50-change/10,50-change/10)
   rect(change, 0, 50-change/10,50-change/10)
 
-  rotate(0);
+  pop()
 }
 
 //SQUARE PASS THROUGH 
 function load8() {
+  push()
+
   let change = loadingSize * sin(frameCount/20)
   //line(-loadingSize+change,0,loadingSize-change,0)
 
@@ -297,38 +348,46 @@ function load8() {
   rect(-change, 0, 50-change/10,50-change/10)
   rect(change, 0, 50-change/10,50-change/10)
 
-  rotate(0);
+  pop()
 }
 
 //SIN STRAIGHT LINE
 function load7() {
+  push()
+
   strokeWeight(5)
   let change = loadingSize * sin(frameCount/20)
   line(-loadingSize+change,0,loadingSize-change,0)
   
-  rotate(0);
+  pop()
 }
 
 //SIN STRAIGHT LINE
 function load6() {
+  push()
+
   strokeWeight(5)
   let change = loadingSize * sin(frameCount/20)
   line(-loadingSize+change,0,loadingSize-change,0)
   
-  rotate(0);
+  pop()
 }
 
 //SIN STRAIGHT LINE BOUNCE
 function load5() {
+  push()
+
   strokeWeight(5)
   let change = loadingSize * sin(frameCount/20)
   line(-loadingSize/2+change,0,loadingSize/2-change,0)
   
-  rotate(0);
+  pop()
 }
 
 //DOUBLE LINE
 function load4() {
+  push()
+
   strokeWeight(5)
   rotate(frameCount/20);
  
@@ -339,22 +398,24 @@ function load4() {
  
   line(-loadingSize,-loadingSize,loadingSize,loadingSize)
 
-  translate(0,0);
-  rotate(0);
+  pop()
 }
 
 //SIMPLE LINE
 function load3() {
+  push()
+
   strokeWeight(5)
   rotate(frameCount/12);
  
   line(-loadingSize,-loadingSize,loadingSize,loadingSize)
-  translate(0,0);
-  rotate(0);
+  pop()
 }
 
 //SIMPLE TRIANGLE (NOT FINISHED - need to maKE EQUILATERAL)
 function load2() {
+  push()
+
   noStroke();
   rotate(frameCount/12);
   let x1 = 0
@@ -367,17 +428,25 @@ function load2() {
   let y3 = loadingSize/2
 
   triangle(x1,y1,x2,y2,x3,y3);
-  translate(0,0);
-  rotate(0);
+  pop()
 }
 
 // SIMPLE SQUARE
 function load1() {
+  push()
+
   noStroke()
   rotate(frameCount/12);
   rect(0,0, 70,70);
-  translate(0,0);
-  rotate(0);
+  
+  pop()
 }
+
+// Function meme
+// function loadN(speed) {
+//   push()
+  
+//   pop()
+// }
 
 
