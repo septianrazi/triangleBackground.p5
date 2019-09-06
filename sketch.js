@@ -15,11 +15,13 @@ var sliderPosMin = 50
 var sliderPosMax = 190
 var sliderButtonSize = 20
 var sliderFill = 150
+var globalSpeed;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   sliderPosY = windowHeight - bordebuttonW - buttonH
+  globalSpeed = 0.10;
 }
 
 function draw() {
@@ -52,7 +54,7 @@ function draw() {
   //loadArray[0]();
   //console.log(loadArray)
 
-  load19()
+  // load19()
   // load18()
   // load17()
   // load16()
@@ -68,9 +70,11 @@ function draw() {
   // load6()
   // load5()
   // load4()
-  // load3()
-  // load2()
-  // load1()
+  // load3(1/12)
+  // load2(1/12)
+  load3(globalSpeed)// 1/12
+  //load2(globalSpeed)// 1/12
+  //load1(globalSpeed)// 1/12
 
 
   //strokeWeight(1)
@@ -135,7 +139,7 @@ function changeBackground() {
 ////////////////////////////////////////////////
 
 // TRIPPY WINDMEEL
-function load19() {
+function load19(speed){
   push()
   let change = loadingSize * ((tan(((frameCount/30)))))
   //line(-loadingSize+change,0,loadingSize-change,0)
@@ -156,7 +160,7 @@ function load19() {
 }
 
 // WINDMEEL
-function load18() {
+function load18(speed) {
   push()
 
   let change = loadingSize * (tan(cos(((frameCount/30)))))
@@ -176,7 +180,7 @@ function load18() {
 }
 
 //CIRCLE SPIRAL LOADING CIRCLE
-function load17() {
+function load17(speed) {
   push()
 
   let change = loadingSize * (cos(((frameCount/30))))
@@ -194,7 +198,7 @@ function load17() {
 }
 
 //CIRCLE SPIRAL LOADING TAN
-function load16() {
+function load16(speed) {
   push()
 
   let change = loadingSize * (1/tan(((frameCount/30))))
@@ -212,7 +216,7 @@ function load16() {
 }
 
 //SQUARE HORIZONTAL SPIN
-function load15() {
+function load15(speed) {
   push()
 
   let change = loadingSize * sin(frameCount/20)
@@ -228,7 +232,7 @@ function load15() {
 }
 
 //CONSISTENT PENDULUM SLOW
-function load13() {
+function load13(speed) {
   push()
 
   noStroke()
@@ -242,7 +246,7 @@ function load13() {
 }
 
 //PENDULUM
-function load12() {
+function load12(speed) {
   push()
 
   noStroke()
@@ -256,7 +260,7 @@ function load12() {
 }
 
 //CONSISTENT PENDULUM
-function load11() {
+function load11(speed) {
   push()
 
   noStroke()
@@ -270,7 +274,7 @@ function load11() {
 }
 
 //CIRCLE STOP LIGHT
-function load10() {
+function load10(speed) {
   push()
 
   noStroke()
@@ -306,7 +310,7 @@ function load10() {
 }
 
 //CIRCLE SPIRAL LOADING
-function load14() {
+function load14(speed) {
   push()
 
   noStroke();
@@ -323,14 +327,14 @@ function load14() {
 }
 
 //SQUARE SPIRAL LOADING
-function load9() {
+function load9(speed) {
   push()
 
   let change = loadingSize * sin(frameCount/20)
   //line(-loadingSize+change,0,loadingSize-change,0)
 
   fill(loadingColour)
-  rotate(frameCount/15)
+  // rotate(frameCount/15)
   rect(-change, 0, 50-change/10,50-change/10)
   rect(change, 0, 50-change/10,50-change/10)
 
@@ -338,7 +342,7 @@ function load9() {
 }
 
 //SQUARE PASS THROUGH 
-function load8() {
+function load8(speed) {
   push()
 
   let change = loadingSize * sin(frameCount/20)
@@ -352,7 +356,7 @@ function load8() {
 }
 
 //SIN STRAIGHT LINE
-function load7() {
+function load7(speed) {
   push()
 
   strokeWeight(5)
@@ -363,7 +367,7 @@ function load7() {
 }
 
 //SIN STRAIGHT LINE
-function load6() {
+function load6(speed) {
   push()
 
   strokeWeight(5)
@@ -374,7 +378,7 @@ function load6() {
 }
 
 //SIN STRAIGHT LINE BOUNCE
-function load5() {
+function load5(speed) {
   push()
 
   strokeWeight(5)
@@ -385,7 +389,7 @@ function load5() {
 }
 
 //DOUBLE LINE
-function load4() {
+function load4(speed) {
   push()
 
   strokeWeight(5)
@@ -402,22 +406,22 @@ function load4() {
 }
 
 //SIMPLE LINE
-function load3() {
+function load3(speed) {
   push()
 
   strokeWeight(5)
-  rotate(frameCount/12);
+  rotate(speed * frameCount);
  
   line(-loadingSize,-loadingSize,loadingSize,loadingSize)
   pop()
 }
 
 //SIMPLE TRIANGLE (NOT FINISHED - need to maKE EQUILATERAL)
-function load2() {
+function load2(speed) {
   push()
 
   noStroke();
-  rotate(frameCount/12);
+  rotate(speed*frameCount);
   let x1 = 0
   let y1 = 0 - loadingSize/2
 
@@ -432,14 +436,27 @@ function load2() {
 }
 
 // SIMPLE SQUARE
-function load1() {
+function load1(speed) {
   push()
 
   noStroke()
-  rotate(frameCount/12);
+  rotate(speed*frameCount);
   rect(0,0, 70,70);
   
   pop()
+}
+
+// function called when a key is pressed
+function keyTyped() {
+  if (key === '=') {
+    globalSpeed = globalSpeed + 0.02;
+  } else if (key === '-') {
+    globalSpeed = globalSpeed - 0.02;
+    if (globalSpeed <= 0){
+      globalSpeed = 0;
+    }
+  }
+  console.log(globalSpeed)
 }
 
 // Function meme
