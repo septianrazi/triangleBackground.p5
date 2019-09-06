@@ -59,22 +59,20 @@ function draw() {
   // load17()
   // load16()
   // load15()
-  // load14()
+  // load14(globalSpeed) // 1/20
   // load13()
   // load12()
   // load11()
   // load10()
-  // load9()
-  // load8()
-  // load7()
-  // load6()
-  // load5()
-  // load4()
-  // load3(1/12)
-  // load2(1/12)
-  load3(globalSpeed)// 1/12
-  //load2(globalSpeed)// 1/12
-  //load1(globalSpeed)// 1/12
+  // load9(globalSpeed) // 1/20
+  // load8(globalSpeed) // 1/20
+  // load7(globalSpeed) // 1/20
+  // load6(globalSpeed) // 1/20
+  // load5(globalSpeed) // 1/20
+  // load4(globalSpeed) // 1/20
+  // load3(globalSpeed)// 1/12
+  // load2(globalSpeed)// 1/12
+  // load1(globalSpeed)// 1/12
 
 
   //strokeWeight(1)
@@ -314,12 +312,12 @@ function load14(speed) {
   push()
 
   noStroke();
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
   bgOpacity = 50;
   //line(-loadingSize+change,0,loadingSize-change,0)
 
   fill(loadingColour)
-  rotate(frameCount/15)
+  rotate(frameCount * (speed *1.33))
   circle(-change, 0, loadingSize*0.65-change/7)
   circle(change, 0, loadingSize*0.65-change/7)
 
@@ -330,7 +328,7 @@ function load14(speed) {
 function load9(speed) {
   push()
 
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
   //line(-loadingSize+change,0,loadingSize-change,0)
 
   fill(loadingColour)
@@ -345,7 +343,7 @@ function load9(speed) {
 function load8(speed) {
   push()
 
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
   //line(-loadingSize+change,0,loadingSize-change,0)
 
   fill(loadingColour,215)
@@ -360,7 +358,7 @@ function load7(speed) {
   push()
 
   strokeWeight(5)
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
   line(-loadingSize+change,0,loadingSize-change,0)
   
   pop()
@@ -371,7 +369,7 @@ function load6(speed) {
   push()
 
   strokeWeight(5)
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
   line(-loadingSize+change,0,loadingSize-change,0)
   
   pop()
@@ -382,7 +380,7 @@ function load5(speed) {
   push()
 
   strokeWeight(5)
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
   line(-loadingSize/2+change,0,loadingSize/2-change,0)
   
   pop()
@@ -393,12 +391,12 @@ function load4(speed) {
   push()
 
   strokeWeight(5)
-  rotate(frameCount/20);
+  rotate(frameCount * speed);
  
   line(-loadingSize,-loadingSize,loadingSize,loadingSize)
   
   strokeWeight(5)
-  rotate(frameCount/30);
+  rotate(frameCount * (speed*2/3));
  
   line(-loadingSize,-loadingSize,loadingSize,loadingSize)
 
