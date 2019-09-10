@@ -6,7 +6,7 @@ var buttonH = 25
 var debug = "Misc"
 var blackBG = true
 var loadingSize = 150 // Size of Loading animation Icon
-var bgOpacity = 255
+var bgOpacity = 100
 var loadArray = [] // Array to store different load icon animations
 
 var sliderPosY;
@@ -42,7 +42,7 @@ function draw() {
   text(debug, windowWidth - 3*buttonW - 2*bordebuttonW, windowHeight - buttonH - bordebuttonW);
   
   fill(150);
-  text('x: ' + mouseX + ' y: ' + mouseY, 100, 50);
+  text('x: ' + Math.round(mouseX) + ' y: ' + Math.round(mouseY), 100, 50);
   
   fill(225)
 
@@ -53,17 +53,19 @@ function draw() {
   translate(windowWidth/2, windowHeight/2);
   //loadArray[0]();
   //console.log(loadArray)
+    
+  load20(globalSpeed) //
+  // load13(globalSpeed) //
+  // load19(globalSpeed) //   bgOpacity = 50
+  // load18(globalSpeed) //   bgOpacity = 50
+  // load17(globalSpeed)
+  // load16(globalSpeed) //   bgOpacity = 37
+  // load15(globalSpeed) // 1/20   bgOpacity = 80
+  // load14(globalSpeed) // 1/20   bgOpacity = 50;
 
-  // load19()
-  // load18()
-  // load17()
-  // load16()
-  // load15()
-  // load14(globalSpeed) // 1/20
-  // load13()
-  // load12()
-  // load11()
-  // load10()
+  // load12(globalSpeed)
+  // load11(globalSpeed) // 1/20
+  // load10(globalSpeed) // 1/30
   // load9(globalSpeed) // 1/20
   // load8(globalSpeed) // 1/20
   // load7(globalSpeed) // 1/20
@@ -135,25 +137,55 @@ function changeBackground() {
 ////////////////////////////////////////////////
 // CODE FOR LOADING ANIMATIONS
 ////////////////////////////////////////////////
+//Square rev up
+function load20(speed) {
+  push()
+  // speed = 0.005
+  noStroke()
+  // bgOpacity = 50
+  change = tan(frameCount*speed/10)
+  rotate(change)
+  if (change < 3){
+    rect(0,0,50+change,50+change)
+  } else if (change > 3){
+    rect(0,0,50+change,50+change, 3*change, 3*change)
+  }
+
+  console.log(change)
+  pop()
+}
+
+//Square rev up
+function load13(speed) {
+  push()
+  // speed = 0.005
+  noStroke()
+  // bgOpacity = 50
+  change = tan(frameCount*speed/10)
+  rotate(change)
+  rect(0,0,50+change,50+change)
+  console.log(change)
+  pop()
+}
 
 // TRIPPY WINDMEEL
 function load19(speed){
   push()
-  let change = loadingSize * ((tan(((frameCount/30)))))
+  let change = loadingSize * ((tan(((frameCount*speed)))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   stroke(loadingColour)
   strokeWeight(5)
 
   fill(loadingColour)
-  rotate(frameCount/8)
+  rotate(frameCount*speed * 30/8)
   line(-change, 0, change, 0)
 
-  let change2 = loadingSize * ((tan(((frameCount/15)))))
+  let change2 = loadingSize * ((tan(((frameCount*speed*2)))))
   line(0, -change2, 0, change2)
   //line(-change2, 0, change2, 0)
   //circle(change, 0, 50)
 
-  bgOpacity = 50
+
   pop()
 }
 
@@ -161,18 +193,18 @@ function load19(speed){
 function load18(speed) {
   push()
 
-  let change = loadingSize * (tan(cos(((frameCount/30)))))
+  let change = loadingSize * (tan(cos(((frameCount*speed)))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   stroke(1)
   strokeWeight(5)
 
   fill(loadingColour)
-  rotate(frameCount/4)
+  rotate(frameCount*speed * 30/4)
   line(-change, 0, change, 0)
   
   //circle(change, 0, 50)
 
-  bgOpacity = 50
+
   
   pop()
 }
@@ -181,16 +213,16 @@ function load18(speed) {
 function load17(speed) {
   push()
 
-  let change = loadingSize * (cos(((frameCount/30))))
+  let change = loadingSize * (cos(((frameCount*speed))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   noStroke()
 
   fill(loadingColour)
-  rotate(frameCount/4)
+  rotate(frameCount*speed*30/4)
   circle(-change, 0, 50)
   circle(change, 0, 50)
 
-  bgOpacity = 50
+  // bgOpacity = 50
   
   pop()
 }
@@ -199,16 +231,16 @@ function load17(speed) {
 function load16(speed) {
   push()
 
-  let change = loadingSize * (1/tan(((frameCount/30))))
+  let change = loadingSize * (1/tan(((frameCount*speed))))
   //line(-loadingSize+change,0,loadingSize-change,0)
   noStroke()
 
   fill(loadingColour)
-  rotate(frameCount/3)
+  rotate(frameCount*speed*10)
   circle(-change, 0, 50,)
   circle(change, 0, 50)
 
-  bgOpacity = 37
+
   
   pop()
 }
@@ -217,28 +249,12 @@ function load16(speed) {
 function load15(speed) {
   push()
 
-  let change = loadingSize * sin(frameCount/20)
+  let change = loadingSize * sin(frameCount * speed)
 
   fill(loadingColour)
   translate(-change, 0)
-  rotate(frameCount/15)
+  rotate(frameCount * speed * 20/15)
   rect(0, 0, 50, 50)
-  bgOpacity = 80
-  translate(0, 0)
-  
-  pop()
-}
-
-//CONSISTENT PENDULUM SLOW
-function load13(speed) {
-  push()
-
-  noStroke()
-  fill(loadingColour,150)
-  for (i = 0; i < 7; i++) {
-    let c = loadingSize * cos((frameCount+ i*5)/(20))
-    circle(c, 0, 50+i*2)
-  } 
   
   pop()
 }
@@ -250,7 +266,10 @@ function load12(speed) {
   noStroke()
   fill(loadingColour,150)
   for (i = 0; i < 7; i++) {
-    let c = loadingSize * sin(frameCount/(20+i))
+    let c = loadingSize * sin(frameCount* 1/(speed*400+i))
+    // let c = loadingSize * sin(frameCount/20+i))
+    // let c = loadingSize * sin(frameCount*(speed-speed/(i+1)))
+
     circle(c, 0, 50-i*2)
   } 
   
@@ -264,7 +283,7 @@ function load11(speed) {
   noStroke()
   fill(loadingColour,150)
   for (i = 0; i < 7; i++) {
-    let c = loadingSize * cos((frameCount+ i*8)/(20))
+    let c = loadingSize * cos(i*8*speed + (frameCount * speed))
     circle(c, 0, 50+i*2)
   }
   
@@ -280,7 +299,7 @@ function load10(speed) {
   var o1
   var o2
   var o3
-  let fc = frameCount/30
+  let fc = frameCount * speed
 
   if ((fc % 3) < 1){
     o1 = l[0]
@@ -313,7 +332,6 @@ function load14(speed) {
 
   noStroke();
   let change = loadingSize * sin(frameCount * speed)
-  bgOpacity = 50;
   //line(-loadingSize+change,0,loadingSize-change,0)
 
   fill(loadingColour)
@@ -446,15 +464,34 @@ function load1(speed) {
 
 // function called when a key is pressed
 function keyTyped() {
+  // keys to alter speed
   if (key === '=') {
     globalSpeed = globalSpeed + 0.02;
+  } else if (key === ']') {
+    globalSpeed = globalSpeed + 0.001;
   } else if (key === '-') {
     globalSpeed = globalSpeed - 0.02;
-    if (globalSpeed <= 0){
-      globalSpeed = 0;
-    }
+  } else if (key === '[') {
+    globalSpeed = globalSpeed - 0.001;
   }
-  console.log(globalSpeed)
+  if (globalSpeed <= 0){
+    globalSpeed = 0;
+  }
+
+
+  //keys to alter background opacity
+  if (key === 'w') {
+    bgOpacity = bgOpacity + 10;
+  } else if (key === 'q') {
+    bgOpacity = bgOpacity - 10;
+  }
+  if (bgOpacity <= 0){
+    bgOpacity = 0;
+  } else if (bgOpacity > 255){
+    bgOpacity = 255;
+  }
+
+  console.log("speed = " + globalSpeed + ", opacity = " + bgOpacity)
 }
 
 // Function meme
