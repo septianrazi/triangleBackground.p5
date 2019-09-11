@@ -54,7 +54,8 @@ function draw() {
   //loadArray[0]();
   //console.log(loadArray)
     
-  load20(globalSpeed) //
+  load21(globalSpeed) //
+  // load20(globalSpeed) //
   // load13(globalSpeed) //
   // load19(globalSpeed) //   bgOpacity = 50
   // load18(globalSpeed) //   bgOpacity = 50
@@ -137,6 +138,48 @@ function changeBackground() {
 ////////////////////////////////////////////////
 // CODE FOR LOADING ANIMATIONS
 ////////////////////////////////////////////////
+
+//Floral Pattern
+function load21(speed) {
+  push()
+  ellipse(0,0,5)
+  // speed = 0.005
+  noStroke()
+  // bgOpacity = 50
+  change = (frameCount*speed)
+
+
+  rotate(change/10)
+  push()
+  translate(100,0)
+  rotate(change)
+  ellipse(0,20,20)
+
+  pop()
+
+
+
+  console.log(change)
+  pop()
+}
+
+//Square rev up
+function load20(speed) {
+  push()
+  // speed = 0.005
+  noStroke()
+  // bgOpacity = 50
+  change = tan(frameCount*speed/10)
+  rotate(change)
+  if (change < 3){
+    rect(0,0,50+change,50+change)
+  } else if (change > 3){
+    rect(0,0,50+change,50+change, 3*change, 3*change)
+  }
+
+  console.log(change)
+  pop()
+}
 //Square rev up
 function load20(speed) {
   push()
