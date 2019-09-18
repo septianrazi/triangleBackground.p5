@@ -6,15 +6,15 @@ function setup() {
 }
 
 var coords =  [[1,3],[2,4],[3,5],[2,6],[1,7]];
-var xLength = 80;
-var yLength = 50;
+var xLength = 70;
+var yLength = 45;
 //variables used to show squares size based on previous variables.
 var squareWidth;
 var squareHeight;
 
 function draw() {
   // variables for how many pixels wanted
-  background(0);
+  background(0,20);
   noStroke();
 
 
@@ -28,14 +28,12 @@ function draw() {
 
   // for loop to colour in pixels for name and >
   for (cor = 0 ; cor <coords.length; cor++){
-    fill(0,coords[cor][2],0);
-    rect (0+(coords[cor][0])*squareWidth,0+(coords[cor][1]-1)*squareHeight,
-    squareWidth,squareHeight);
+    fill(0,coords[cor][2],0);    
+    triangle(0+(coords[cor][0])*squareWidth, 0+(coords[cor][1]-1)*squareHeight,
+    0+((coords[cor][0])*squareWidth) + squareWidth, 0+(coords[cor][1]-1)*squareHeight,
+    (0+(coords[cor][0])*squareWidth+squareWidth), (coords[cor][1]-1)*squareHeight+squareHeight);
   }
-
 }
-
-
 
 function mouseMoved(){
     x = Math.round(mouseX/squareWidth)
