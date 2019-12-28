@@ -1,34 +1,29 @@
-function setup() {
-  // create the canvas
-  createCanvas(windowWidth, windowHeight);
-  background(0,0,0);
-
-}
-
-var coords =  [[1,3],[2,4],[3,5],[2,6],[1,7]];
+var coords =  [];
 var xLength = 70;
 var yLength = 45;
 //variables used to show squares size based on previous variables.
 var squareWidth;
 var squareHeight;
 
+function setup() {
+  // create the canvas
+  createCanvas(windowWidth, windowHeight);
+  background(0,0,0);
+
+  
+  //variables used to show squares size based on previous variables.
+  squareWidth = width/xLength;
+  squareHeight = height/yLength;
+}
+
 function draw() {
   // variables for how many pixels wanted
   background(0,20);
   noStroke();
 
-
-  //variables used to show squares size based on previous variables.
-  squareWidth = width/xLength;
-  squareHeight = height/yLength;
-  //array in array to colour coordinates for name and >
-  // x values are 1 over
-
-
-
   // for loop to colour in pixels for name and >
   for (cor = 0 ; cor <coords.length; cor++){
-    fill(0,coords[cor][2],0);    
+    fill(0,coords[cor][2],0, 20);    
     triangle(0+(coords[cor][0])*squareWidth, 0+(coords[cor][1]-1)*squareHeight,
     0+((coords[cor][0])*squareWidth) + squareWidth, 0+(coords[cor][1]-1)*squareHeight,
     (0+(coords[cor][0])*squareWidth+squareWidth), (coords[cor][1]-1)*squareHeight+squareHeight);
@@ -38,7 +33,6 @@ function draw() {
 function mouseMoved(){
     x = Math.round(mouseX/squareWidth)
     y = Math.round(mouseY/squareHeight)
-
 
   coords.push([x,y])
 
@@ -50,7 +44,6 @@ function mouseMoved(){
       minX = Math.round(randomGaussian(0, 1));
       minY = Math.round(randomGaussian(0, 1));
       col = Math.round(random(150,190));
-
 
       console.log(minX)
       coords.push([x+minX, y+minY, col])
