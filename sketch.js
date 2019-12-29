@@ -8,7 +8,7 @@ var squareHeight;
 function setup() {
   // create the canvas
   createCanvas(windowWidth, windowHeight);
-  background(0,0,0);
+  background(255,255,255);
 
   
   //variables used to show squares size based on previous variables.
@@ -18,7 +18,7 @@ function setup() {
 
 function draw() {
   // variables for how many pixels wanted
-  background(0,20);
+  background(255,20);
   noStroke();
 
   // for loop to colour in pixels for name and >
