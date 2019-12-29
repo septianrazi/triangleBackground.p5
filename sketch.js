@@ -10,6 +10,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255,255,255);
 
+   // Move the canvas so it’s inside our <div id="sketch-holder">.
+  canvas.parent('sketch-holder');
   
   //variables used to show squares size based on previous variables.
   squareWidth = width/xLength;
