@@ -7,7 +7,7 @@ var squareHeight;
 
 function setup() {
   // create the canvas
-  createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(windowWidth, windowHeight);
   background(255,255,255);
 
    // Move the canvas so it’s inside our <div id="sketch-holder">.
@@ -25,7 +25,7 @@ function draw() {
 
   // for loop to colour in pixels for name and >
   for (cor = 0 ; cor <coords.length; cor++){
-    fill(0,coords[cor][2],0, 20);    
+    fill(18,(40 % coords[cor][2]),40, 20);    
     triangle(0+(coords[cor][0])*squareWidth, 0+(coords[cor][1]-1)*squareHeight,
     0+((coords[cor][0])*squareWidth) + squareWidth, 0+(coords[cor][1]-1)*squareHeight,
     (0+(coords[cor][0])*squareWidth+squareWidth), (coords[cor][1]-1)*squareHeight+squareHeight);
