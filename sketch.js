@@ -46,22 +46,19 @@ function mouseMoved(){
       minX = Math.round(randomGaussian(0, 1));
       minY = Math.round(randomGaussian(0, 1));
       col = Math.round(random(150,190));
-
-      console.log(minX)
+      
       coords.push([x+minX, y+minY, col])
 
       minX = Math.round(randomGaussian(0, 2));
       minY = Math.round(randomGaussian(0, 2));
       col = Math.round(random(30,70));
 
-      console.log(minX)
       coords.push([x+minX, y+minY, col])
 
       minX = Math.round(randomGaussian(0, 3));
       minY = Math.round(randomGaussian(0, 3));
       col = Math.round(random(0,20));
 
-      console.log(minX)
       coords.push([x+minX, y+minY, col])
     }
 
